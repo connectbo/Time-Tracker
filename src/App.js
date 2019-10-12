@@ -1,17 +1,12 @@
 import React from 'react';
-import logo from './logo.svg';
+import ReactDOM from 'react-dom';
+import Todo from './components/todo';
+import Timeline from './components/timeline';
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-      </header>
-      <div id="timeline">
-      </div>
-      <div id="todo">
-      </div>
-    </div>
+    <header></header>
   );
 }
 

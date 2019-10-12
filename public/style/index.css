@@ -1,0 +1,14 @@
+#container{
+    display: flex;
+}
+#timeline {
+  padding: 3% 3%;
+  width: 30%;
+  float: left;
+}
+
+#todo {
+  padding-right: 3%;
+  padding-top: 3%;
+  width: 30%;
+}

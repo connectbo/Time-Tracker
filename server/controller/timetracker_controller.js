@@ -8,7 +8,7 @@ exports.signup = async function (req, res){
             res(err,null);
         }
         else{
-            console.log(res);
+            return res;
         }
     })
 }
@@ -18,7 +18,7 @@ exports.login = async function(req, res){
     sql.query(toquery, req.user, function (err, res){
         if(err){
             console.log("Error: ", err);
-            res(err,null);
+            return res;
         }
         else{
             console.log(res);
@@ -34,7 +34,7 @@ exports.insertActivity = async function (req, res){
             res(err,null);
         }
         else{
-            console.log(res);
+            return res;
         }
     })
 }
@@ -47,7 +47,7 @@ exports.deleteActivity = async function (req, res){
             res(err,null);
         }
         else{
-            console.log(res);
+            return res;
         }
     })
 }
@@ -60,12 +60,13 @@ exports.insertTimeline = async function (req, res){
             res(err,null);
         }
         else{
-            console.log(res);
+            return res;
         }
     })
 }
 
 exports.getActivity = async function (req, res){
+    console.log("getActivity visited!")
     const toquery = "select * from activity where user_id = ?";
     sql.query(toquery, [req.user_id], function (err, res){
         if(err){
@@ -74,6 +75,7 @@ exports.getActivity = async function (req, res){
         }
         else{
             console.log(res);
+            return res
         }
     })
 }

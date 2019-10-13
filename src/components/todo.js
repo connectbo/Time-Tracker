@@ -6,7 +6,7 @@ class Todo extends Component {
   };
 
   componentDidMount() {
-    fetch("http://localhost:5000")
+    fetch("https://localhost:5000/getActivity")
       .then(response => response.json())
       .then(data => this.setState({ todoList: data }));
   }

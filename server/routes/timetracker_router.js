@@ -7,7 +7,9 @@ TimelineRouter.post('/signup', TimelineController.signup)
 
 TimelineRouter.post('/login', TimelineController.login)
 
-TimelineRouter.post('/insert', TimelineController.insert)
+TimelineRouter.post('/insertActivity', TimelineController.insertActivity)
+
+TimelineRouter.post('/insertTimeline', TimelineController.insertTimeline)
 
 TimelineRouter.get('/getActivity', TimelineController.getActivity);
 

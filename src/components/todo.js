@@ -12,7 +12,11 @@ class Todo extends Component {
       this.setState({
         todoList: [
           ...this.state.todoList,
-          { id: Date.now(), content: document.getElementById("newList").value }
+          {
+            id: Date.now(),
+            content: document.getElementById("newList").value,
+            finished: false
+          }
         ]
       });
       document.getElementById("newList").value = "";
@@ -20,19 +24,25 @@ class Todo extends Component {
   };
 
   removeItem = e => {
-    const itemId = e.target.parentNode.id;
+    const itemId = e.currentTarget.parentNode.parentNode.id;
     this.setState({
       todoList: this.state.todoList.filter(e => e.id != itemId)
     });
   };
 
   checked = e => {
-    const itemId = e.target.parentNode.id;
+    const itemId = e.target.parentNode.parentNode.id;
     if (e.target.checked) {
-      document.getElementById(itemId).style.color = "grey";
+      document.getElementById(itemId).style.background = "grey";
     } else {
-      document.getElementById(itemId).style.color = "black";
+      document.getElementById(itemId).style.background = "white";
     }
+  };
+
+  addToTask = e => {
+    const task = e.currentTarget.parentNode.parentNode.textContent;
+    const id = e.currentTarget.parentNode.parentNode.id;
+    const newTask = { id, task };
   };
 
   render() {
@@ -66,21 +76,30 @@ class Todo extends Component {
               key={li.id}
               id={li.id}
             >
-              <span>
+              <label className="pt-2">
                 <input
                   type="checkbox"
-                  onChange={e => this.checked(e)}
+                  onChange={this.checked}
                   className="mr-2"
                 ></input>
                 {li.content}
-              </span>
-              <button
-                className="btn btn-outline-info btn-sm"
-                type="button"
-                onClick={e => this.removeItem(e)}
-              >
-                X
-              </button>
+              </label>
+              <div>
+                <button
+                  className="btn btn-outline-white"
+                  type="button"
+                  onClick={this.addToTask}
+                >
+                  <i className="fas fa-plus-circle fa-2x"></i>
+                </button>
+                <button
+                  className="btn btn-outline-white"
+                  type="button"
+                  onClick={this.removeItem}
+                >
+                  <i className="fas fa-backspace fa-2x"></i>
+                </button>
+              </div>
             </li>
           ))}
         </ul>

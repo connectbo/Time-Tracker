@@ -1,15 +1,23 @@
-#container{
-    display: flex;
-}
-
 #timeline {
-  padding: 3% 3%;
-  width: 30%;
-  float: left;
+  border: solid 3px #64b5f6;
+  margin-top: 15px;
 }
 
-#todo {
-  padding-right: 3%;
-  padding-top: 3%;
-  width: 30%;
+#time {
+  width: 15%;
+  text-align: center;
+  margin-right: 5px;
+}
+
+.tasks {
+  width: 40%;
+  height: 60px;
+  text-align: center;
+  background-color: #f1f1f1;
+  margin-right: 25px;
+}
+
+.tasks:hover {
+  background: #64b5f6;
+  cursor: pointer;
 }

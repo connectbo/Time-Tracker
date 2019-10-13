@@ -1,6 +1,7 @@
 #container{
     display: flex;
 }
+
 #timeline {
   padding: 3% 3%;
   width: 30%;

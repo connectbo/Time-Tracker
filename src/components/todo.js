@@ -3,10 +3,12 @@ import React, { Component } from "react";
 class Todo extends Component {
   state = {
     todoList: [
-      { id: 1, content: "study" },
+      { id: 1, content: "homework" },
       { id: 2, content: "work out" },
-      { id: 3, content: "party" },
-      { id: 4, content: "grocery" }
+      { id: 3, content: "shopping" },
+      { id: 4, content: "grocery" },
+      { id: 5, content: "classes" },
+      { id: 6, content: "TV shows" }
     ]
   };
 

@@ -1,13 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import App from "./App";
 import Timeline from "./components/timeline";
 import Todo from "./components/todo";
+import Navbar from "./components/navbar";
 import "bootstrap/dist/css/bootstrap.css";
 import * as serviceWorker from "./serviceWorker";
 
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(<Navbar />, document.getElementById("root"));
 ReactDOM.render(<Timeline />, document.getElementById("timeline"));
 ReactDOM.render(<Todo />, document.getElementById("todo"));
 

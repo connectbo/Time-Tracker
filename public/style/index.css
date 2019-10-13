@@ -2,6 +2,10 @@ body {
   font-family: "Be Vietnam", sans-serif;
 }
 
+#topNav {
+  background: #64b5f6;
+}
+
 #add {
   background: #64b5f6;
 }

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
 function Timeline() {
-  //   const classes = useStyles();
   const timeline = [
     "8AM",
     "9AM",

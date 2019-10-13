@@ -5,11 +5,11 @@ class Todo extends Component {
     todoList: []
   };
 
-  componentDidMount() {
-    fetch("http://localhost:5000")
-      .then(response => response.json())
-      .then(data => this.setState({ todoList: data }));
-  }
+  // componentDidMount() {
+  //   fetch("http://localhost:5000")
+  //     .then(response => response.json())
+  //     .then(data => this.setState({ todoList: data }));
+  // }
 
   addItem = () => {
     if (document.getElementById("newList").value == "") {

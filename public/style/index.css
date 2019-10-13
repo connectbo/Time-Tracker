@@ -6,7 +6,7 @@
 #time {
   width: 15%;
   text-align: center;
-  margin-right: 5px;
+  padding-right: 5px;
 }
 
 .tasks {
@@ -15,9 +15,23 @@
   text-align: center;
   background-color: #f1f1f1;
   margin-right: 25px;
+  padding-top: 15px;
 }
 
 .tasks:hover {
-  background: #64b5f6;
+  box-shadow: 2px 4px 8px 0 rgba(0, 0, 0, 0.2);
   cursor: pointer;
+}
+
+.clicked {
+  border: solid 2px #64b5f6;
+  transform: rotateY(0);
+}
+
+.added {
+  background: #64b5f6;
+}
+
+.finished {
+  background: yellow;
 }

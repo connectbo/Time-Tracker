@@ -1,15 +1,37 @@
-#container{
-    display: flex;
-}
-
 #timeline {
-  padding: 3% 3%;
-  width: 30%;
-  float: left;
+  border: solid 3px #64b5f6;
+  margin-top: 15px;
 }
 
-#todo {
-  padding-right: 3%;
-  padding-top: 3%;
-  width: 30%;
+#time {
+  width: 15%;
+  text-align: center;
+  padding-right: 5px;
+}
+
+.tasks {
+  width: 40%;
+  height: 60px;
+  text-align: center;
+  background-color: #f1f1f1;
+  margin-right: 25px;
+  padding-top: 15px;
+}
+
+.tasks:hover {
+  box-shadow: 2px 4px 8px 0 rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+.clicked {
+  border: solid 2px #64b5f6;
+  transform: rotateY(0);
+}
+
+.added {
+  background: #64b5f6;
+}
+
+.finished {
+  background: yellow;
 }

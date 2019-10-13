@@ -2,8 +2,14 @@ import React, { Component } from "react";
 
 class Todo extends Component {
   state = {
-    todoList: [{ id: Date.now(), content: "list1" }]
+    todoList: []
   };
+
+  componentDidMount() {
+    fetch("http://localhost:5000")
+      .then(response => response.json())
+      .then(data => this.setState({ todoList: data }));
+  }
 
   addItem = () => {
     if (document.getElementById("newList").value == "") {
@@ -12,7 +18,11 @@ class Todo extends Component {
       this.setState({
         todoList: [
           ...this.state.todoList,
-          { id: Date.now(), content: document.getElementById("newList").value }
+          {
+            id: Date.now(),
+            content: document.getElementById("newList").value,
+            finished: false
+          }
         ]
       });
       document.getElementById("newList").value = "";
@@ -20,18 +30,53 @@ class Todo extends Component {
   };
 
   removeItem = e => {
-    const itemId = e.target.parentNode.id;
+    const itemId = e.currentTarget.parentNode.parentNode.id;
     this.setState({
       todoList: this.state.todoList.filter(e => e.id != itemId)
     });
+    const text = e.currentTarget.parentNode.parentNode.textContent;
+    const added = document.querySelectorAll(".added");
+    for (let el of added) {
+      if (el.textContent === text) {
+        el.textContent = "";
+        el.classList.remove("added", "finished");
+      }
+    }
   };
 
   checked = e => {
-    const itemId = e.target.parentNode.id;
+    const itemId = e.target.parentNode.parentNode.id;
+    document.getElementById(itemId).style.background = "grey";
+    const text = e.target.parentNode.parentNode.textContent;
+    const added = document.querySelectorAll(".added");
     if (e.target.checked) {
-      document.getElementById(itemId).style.color = "grey";
+      for (let el of added) {
+        if (el.textContent === text) {
+          el.classList.add("finished");
+        }
+      }
     } else {
-      document.getElementById(itemId).style.color = "black";
+      document.getElementById(itemId).style.background = "white";
+      for (let el of added) {
+        if (el.textContent === text) {
+          el.classList.remove("finished");
+        }
+      }
+    }
+  };
+
+  addToTask = e => {
+    if (e.currentTarget.parentNode.previousSibling.firstChild.checked) {
+      alert("task already finished");
+    } else {
+      const task = e.currentTarget.parentNode.parentNode.textContent;
+      const id = e.currentTarget.parentNode.parentNode.id;
+      const clickItem = document.querySelectorAll(".clicked");
+      for (let el of clickItem) {
+        el.textContent = task;
+        el.classList.remove("clicked");
+        el.classList.add("added");
+      }
     }
   };
 
@@ -66,21 +111,30 @@ class Todo extends Component {
               key={li.id}
               id={li.id}
             >
-              <span>
+              <label className="pt-2">
                 <input
                   type="checkbox"
-                  onChange={e => this.checked(e)}
+                  onChange={this.checked}
                   className="mr-2"
                 ></input>
                 {li.content}
-              </span>
-              <button
-                className="btn btn-outline-info btn-sm"
-                type="button"
-                onClick={e => this.removeItem(e)}
-              >
-                X
-              </button>
+              </label>
+              <div>
+                <button
+                  className="btn btn-outline-white"
+                  type="button"
+                  onClick={this.addToTask}
+                >
+                  <i className="fas fa-plus-circle fa-2x"></i>
+                </button>
+                <button
+                  className="btn btn-outline-white"
+                  type="button"
+                  onClick={this.removeItem}
+                >
+                  <i className="fas fa-backspace fa-2x"></i>
+                </button>
+              </div>
             </li>
           ))}
         </ul>

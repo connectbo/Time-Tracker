@@ -6,9 +6,14 @@ class Todo extends Component {
   };
 
   componentDidMount() {
-    fetch("https://localhost:5000/getActivity")
+    fetch("http://localhost:5000/getActivity")
       .then(response => response.json())
-      .then(data => this.setState({ todoList: data }));
+      .then(data => {
+        let obj = {
+          id: data.id
+        };
+        this.setState({ todoList: [...this.state.todoList, obj] });
+      });
   }
 
   addItem = () => {
@@ -20,8 +25,7 @@ class Todo extends Component {
           ...this.state.todoList,
           {
             id: Date.now(),
-            content: document.getElementById("newList").value,
-            finished: false
+            content: document.getElementById("newList").value
           }
         ]
       });

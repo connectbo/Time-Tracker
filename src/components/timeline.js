@@ -26,7 +26,7 @@ const useStyles = makeStyles(theme => ({
 
 function Timeline() {
     const classes = useStyles();
-    const timeline = ['8 AM', '9AM', '10AM', '11AM', '12PM', '1PM', '2PM', '3PM', '4PM', '5PM', '6PM', '7PM', '8PM', '9PM', '10PM', '11PM', '12PM'];
+    const timeline = ['8AM', '9AM', '10AM', '11AM', '12PM', '1PM', '2PM', '3PM', '4PM', '5PM', '6PM', '7PM', '8PM', '9PM', '10PM', '11PM', '12PM'];
     const processButtonClick = e => {
         console.log(e.target);
     }

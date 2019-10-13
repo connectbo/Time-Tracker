@@ -64,3 +64,16 @@ exports.insertTimeline = async function (req, res){
         }
     })
 }
+
+exports.getActivity = async function (req, res){
+    const toquery = "select * from activity where user_id = ?";
+    sql.query(toquery, [req.user_id], function (err, res){
+        if(err){
+            console.log("Error: ", err);
+            res(err,null);
+        }
+        else{
+            console.log(res);
+        }
+    })
+}

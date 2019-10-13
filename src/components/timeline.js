@@ -33,6 +33,7 @@ function Timeline() {
     } else if (el.classList.contains("added")) {
       el.classList.remove("added");
       el.textContent = "";
+    } else if (el.classList.contains("finished")) {
     } else {
       el.classList.add("clicked");
     }
@@ -48,12 +49,12 @@ function Timeline() {
           >
             <div id="time">{hour}</div>
             <div
-              className="tasks"
+              className="tasks text-white font-weight-bold"
               id={`${hour}1`}
               onClick={processButtonClick}
             ></div>
             <div
-              className="tasks"
+              className="tasks text-white font-weight-bold"
               id={`${hour}2`}
               onClick={processButtonClick}
             ></div>

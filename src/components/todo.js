@@ -2,21 +2,16 @@ import React, { Component } from "react";
 
 class Todo extends Component {
   state = {
-    todoList: []
+    todoList: [
+      { id: 1, content: "study" },
+      { id: 2, content: "work out" },
+      { id: 3, content: "party" },
+      { id: 4, content: "grocery" }
+    ]
   };
 
-  componentDidMount() {
-    fetch("http://localhost:5000/getActivity")
-      .then(response => response.json())
-      .then(data => {
-        let obj = {
-          id: data.id
-        };
-        this.setState({ todoList: [...this.state.todoList, obj] });
-      });
-  }
-
   addItem = () => {
+    console.log(this.state);
     if (document.getElementById("newList").value == "") {
       alert("must have a value");
     } else {
@@ -56,6 +51,7 @@ class Todo extends Component {
     if (e.target.checked) {
       for (let el of added) {
         if (el.textContent === text) {
+          el.classList.remove("added");
           el.classList.add("finished");
         }
       }
@@ -101,7 +97,8 @@ class Todo extends Component {
               <button
                 type="button"
                 onClick={this.addItem}
-                className="btn btn-info mb-2 btn-block"
+                className="btn mb-2 btn-block text-white font-weight-bold border-0"
+                id="add"
               >
                 Add
               </button>

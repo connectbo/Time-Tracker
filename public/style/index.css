@@ -2,6 +2,10 @@ body {
   font-family: "Be Vietnam", sans-serif;
 }
 
+#add {
+  background: #64b5f6;
+}
+
 #timeline {
   border: solid 3px #64b5f6;
   margin-top: 15px;
@@ -37,5 +41,5 @@ body {
 }
 
 .finished {
-  background: yellow;
+  background: #ffa500;
 }

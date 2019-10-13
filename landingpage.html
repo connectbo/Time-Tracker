@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Hello!</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" href="landing.css">
+    
+    <!-- import the webpage's javascript file -->
+    <script src="https://unpkg.com/react@16/umd/react.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  </head>  
+  <body>
+    <div id="app"></div>
+    <script type="text/babel">
+        function Themeimg(props) {
+  return (
+    <div id="sketch-container">
+      <img src="https://images.unsplash.com/photo-1532622785990-d2c36a76f5a6?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ" alt="this is our app"/>
+    </div>      
+  )
+};
+
+class Form extends React.Component {
+  constructor (props) {
+    super(props);
+    this.state = {
+      username:'',
+      password:'',
+      passrepeat:'',
+    }
+  };
+  handleChange = event => {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  };
+
+  handleSubmit = event => {
+    console.log("Submitting");
+    console.log(this.state);
+    if (this.state.passrepeat && this.state.password != this.state.passrepeat) {
+      alert("You need to enter the same password.")
+    };
+    var data = {
+      username: this.state.username,
+      password: this.state.password,
+    }
+  };
+  
+  render() {
+    const { username, password , passrepeat} = this.state;
+    if (this.props.login==="signin") {
+      return (
+        <div id="signin">
+        <div id="username-group" className="input-group">
+          <label for="user">Username:</label>
+          <input 
+            name="username" 
+            type="text" 
+            className="forminput"
+            placeholder="Enter your username"
+            value={username}
+            maxlength='10' 
+            required 
+            onChange = {this.handleChange}/>
+        </div>
+        <div id="password-group" className="input-group">
+          <label for="pass">Password:</label>
+          <input 
+            name="password" 
+            type="password" 
+            className="forminput" 
+            data-type="password"
+            placeholder="Enter your password"
+            value={password}
+            maxlength='20' 
+            minlength='6' 
+            required 
+            onChange = {this.handleChange}/>
+        </div>
+        <div className="group">
+					<input 
+            type="submit" 
+            className="button" 
+            value="Sign In" 
+            onClick={this.handleSubmit}/>
+				</div>
+        </div>
+      )
+    } else {
+      return (
+        <div id="signup">
+        <div id="username-group" className="input-group">
+          <label for="user">Username:</label>
+          <input 
+            name="username" 
+            type="text" 
+            className="forminput"
+            placeholder="Enter your username"
+            value={username}
+            maxlength='10' 
+            required 
+            onChange = {this.handleChange}/>
+        </div>
+        <div id="password-group" className="input-group">
+          <label for="pass">Password:</label>
+          <input 
+            name="password" 
+            type="password" 
+            className="forminput" 
+            data-type="password"
+            placeholder="Enter your password"
+            value={password}
+            maxlength='20' 
+            minlength='6' 
+            required 
+            onChange = {this.handleChange}/>
+        </div>
+        <div id="passrepeat-group" className="input-group">
+          <label for="passrepeat">Confirm Password:</label>
+          <input 
+            name="passrepeat" 
+            type="password" 
+            className="forminput" 
+            data-type="password"
+            placeholder="Confirm your password"
+            value={passrepeat}
+            maxlength='20' 
+            minlength='6' 
+            required
+            onChange = {this.handleChange}/>
+        </div>
+        <div className="group">
+					<input type="submit" className="button" value="Sign Up" onClick={this.handleSubmit}/>
+				</div>
+        </div>
+      );
+    };
+  };
+};
+  
+class Loginbox extends React.Component {
+  constructor (props) {
+    super(props);
+    this.state = {
+      login: "signin",
+    }
+    this.handleclick= this.handleclick.bind(this);
+  };
+  handleclick(event) {
+    this.setState({
+      login: event.target.value,
+    })
+  }
+  render() {
+    return (
+      <div id="login-container">
+        <input id="tab-1" type="radio" name="tab" value="signin" className="tabbtn" checked={this.state.login==="signin"} onChange={this.handleclick}/><label for="tab-1" className="tab">Sign In</label>
+		<input id="tab-2" type="radio" name="tab" className="tabbtn" value="signup" checked={this.state.login==="signup"} onClick={(event) => this.handleclick(event)}/><label for="tab-2" className="tab">Sign Up</label>
+        <form id="form" autocomplete="on">
+           <Form login={this.state.login}/>
+        </form>
+      </div>
+    )
+  };
+};
+
+class Rightdiv extends React.Component {
+  constructor (props) {
+    super(props);
+  };
+  render() {
+    return (
+      <div id='right-container'>
+        <Loginbox />
+        </div>     
+    )
+  };
+};
+
+class Page extends React.Component {
+  constructor (props) {
+    super(props);
+  };
+  render() {
+    return (
+      <div id='page-container'>
+        <Themeimg />
+        <Rightdiv />
+       </div>     
+    )
+  };
+};
+
+      
+
+//========================================
+
+ReactDOM.render(
+  <Page />
+  ,
+  document.getElementById('app')
+);      
+    </script>
+  </body>
+</html>

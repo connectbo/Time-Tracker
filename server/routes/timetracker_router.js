@@ -9,4 +9,6 @@ TimelineRouter.post('/login', TimelineController.login)
 
 TimelineRouter.post('/insert', TimelineController.insert)
 
+TimelineRouter.get('/getActivity', TimelineController.getActivity);
+
 module.exports = TimelineRouter;

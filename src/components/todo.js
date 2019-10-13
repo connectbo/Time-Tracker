@@ -5,11 +5,16 @@ class Todo extends Component {
     todoList: []
   };
 
-  // componentDidMount() {
-  //   fetch("http://localhost:5000")
-  //     .then(response => response.json())
-  //     .then(data => this.setState({ todoList: data }));
-  // }
+  componentDidMount() {
+    fetch("http://localhost:5000/getActivity")
+      .then(response => response.json())
+      .then(data => {
+        let obj = {
+          id: data.id
+        };
+        this.setState({ todoList: [...this.state.todoList, obj] });
+      });
+  }
 
   addItem = () => {
     if (document.getElementById("newList").value == "") {
@@ -20,8 +25,7 @@ class Todo extends Component {
           ...this.state.todoList,
           {
             id: Date.now(),
-            content: document.getElementById("newList").value,
-            finished: false
+            content: document.getElementById("newList").value
           }
         ]
       });
